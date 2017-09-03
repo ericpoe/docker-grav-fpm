@@ -10,24 +10,28 @@ ENV LC_ALL C.UTF-8
 
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    lsb-release \
+    python-software-properties \
     software-properties-common \
-    python-software-properties
-RUN apt-get install -y apt-transport-https lsb-release ca-certificates wget && \
+    wget && \
     wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
     echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
 
 RUN apt-get update && apt-get upgrade -y
 
 RUN apt-get install -y \
-    zip unzip \
-    nginx \
     git \
-    php7.1-fpm \
+    nginx \
+    php-apcu \
     php7.1-cli \
     php7.1-curl \
+    php7.1-fpm \
     php7.1-mbstring \
     php7.1-xml \
-    php-apcu
+    unzip \
+    zip
 
 # # Install GD extension
 RUN apt-get install -y \
@@ -65,8 +69,8 @@ RUN chmod +x /entrypoint.sh
 
 RUN chmod +x bin/gpm && \
     chmod +x bin/grav && \
-    chmod +x bin/plugin
-RUN chmod 777 -Rf user && \
+    chmod +x bin/plugin && \
+    chmod 777 -Rf user && \
     chmod +s -Rf user && \
     cd user && \
     umask 0002
