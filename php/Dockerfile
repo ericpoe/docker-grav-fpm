@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM php:rc-fpm
 
 MAINTAINER Eric Poe <eric.poe@gmail.com>
 
@@ -13,7 +13,6 @@ RUN apt-get install -y \
     apt-transport-https \
     ca-certificates \
     lsb-release \
-    python-software-properties \
     software-properties-common \
     wget && \
     wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
@@ -25,11 +24,11 @@ RUN apt-get install -y \
     git \
     nginx \
     php-apcu \
-    php7.1-cli \
-    php7.1-curl \
-    php7.1-fpm \
-    php7.1-mbstring \
-    php7.1-xml \
+    php7.2-cli \
+    php7.2-curl \
+    php7.2-fpm \
+    php7.2-mbstring \
+    php7.2-xml \
     unzip \
     zip
 
@@ -37,7 +36,7 @@ RUN apt-get install -y \
 RUN apt-get install -y \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
-    libpng12-dev  && \
+    libpng-dev  && \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
     docker-php-ext-install -j$(nproc) gd
 
