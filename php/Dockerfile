@@ -1,4 +1,4 @@
-FROM php:rc-fpm
+FROM php:7.2-fpm
 
 MAINTAINER Eric Poe <eric.poe@gmail.com>
 
