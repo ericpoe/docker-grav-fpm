@@ -53,6 +53,6 @@ volumes:
 
 ## Comments and Pull Requests Welcome
 
-If you find a bug or want to make a pull request, please do so at this image's [Github repository](https://github.com/ericpoe/docker-grav-fpm).
+If you find a bug or want to make a pull request, please do so at this image's [Github repository](https://github.com/ericpoe/docker-grav-fpm). Please follow the [Contributing guidelines](CONTRIBUTING.md).
 
 Feel free to reach out to me via Twitter: [@eric_poe](https://twitter.com/eric_poe)
