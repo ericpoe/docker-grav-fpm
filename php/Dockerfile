@@ -1,6 +1,6 @@
 FROM php:7.2-fpm
 
-MAINTAINER Eric Poe <eric.poe@gmail.com>
+LABEL maintainer="Eric Poe <eric.poe@gmail.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -8,31 +8,18 @@ ENV TERM xterm
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
-RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
-    lsb-release \
-    software-properties-common \
-    wget && \
-    wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
-    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
-
-RUN apt-get update && apt-get upgrade -y
-
-RUN apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     git \
     nginx \
-    php-apcu \
-    php7.2-cli \
-    php7.2-curl \
-    php7.2-fpm \
-    php7.2-mbstring \
-    php7.2-xml \
     unzip \
+    wget \
     zip
 
-# # Install GD extension
+## Install APCU
+RUN pecl install apcu \
+    && docker-php-ext-enable apcu
+
+## Install GD extension
 RUN apt-get install -y \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
@@ -40,7 +27,7 @@ RUN apt-get install -y \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
     docker-php-ext-install -j$(nproc) gd
 
-# # Install ZIP extension
+## Install ZIP extension
 RUN apt-get install -y \
     zlib1g-dev && \
     docker-php-ext-install -j$(nproc) zip
@@ -77,8 +64,6 @@ RUN chmod +x bin/gpm && \
 RUN chown -hR www-data:www-data /var/www/html
 
 USER "www-data"
-CMD ["php", "/var/www/html/bin/composer.phar", "self-update"]
-CMD ["php", "/var/www/html/bin/composer.phar", "install", "--no-dev", "-o"]
 
 ENTRYPOINT ["/entrypoint.sh"]
 
