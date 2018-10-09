@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+    web:
+        image: nginx:latest
+        ports:
+            - "8000:80"
+        volumes:
+            - ./site.conf:/etc/nginx/conf.d/default.template
+            - web-volume:/var/www/html
+        environment:
+            - NGINX_HOST=${NGINX_HOST}
+        command: /bin/sh -c "envsubst '$$NGINX_HOST' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+        depends_on:
+            - php
+    php:
+        image: ericpoe/grav-fpm:latest
+        volumes:
+            - web-volume:/var/www/html
+volumes:
+    web-volume:
+
