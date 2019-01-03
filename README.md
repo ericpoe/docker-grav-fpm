@@ -8,9 +8,9 @@ Since this image is based upon the official `php-fpm` Docker image build from [P
 
 ## Supported tags and respective `Dockerfile` links
 
-`7.3`, `latest` [(v7.3/php/Dockerfile)](https://github.com/ericpoe/docker-grav-fpm/blob/v7.3/php/Dockerfile)
-`7.2` [(v7.2/php/Dockerfile)](https://github.com/ericpoe/docker-grav-fpm/blob/v7.2/php/Dockerfile)
-`7.1` [(v7.1/php/Dockerfile)](https://github.com/ericpoe/docker-grav-fpm/blob/v7.1/php/Dockerfile)
+* `7.3`, `latest` [(v7.3/php/Dockerfile)](https://github.com/ericpoe/docker-grav-fpm/blob/v7.3/php/Dockerfile)
+* `7.2` [(v7.2/php/Dockerfile)](https://github.com/ericpoe/docker-grav-fpm/blob/v7.2/php/Dockerfile)
+* `7.1` [(v7.1/php/Dockerfile)](https://github.com/ericpoe/docker-grav-fpm/blob/v7.1/php/Dockerfile)
 
 ## How to use this image
 
