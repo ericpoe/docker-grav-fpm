@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.3-fpm
 
 LABEL maintainer="Eric Poe <eric.poe@gmail.com>"
 
@@ -29,7 +29,7 @@ RUN apt-get install -y \
 
 ## Install ZIP extension
 RUN apt-get install -y \
-    zlib1g-dev && \
+    libzip-dev && \
     docker-php-ext-install -j$(nproc) zip
 
 # Install Grav
